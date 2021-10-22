@@ -1,0 +1,37 @@
+void setup()
+{
+//initialize the mode of the pins
+pinMode(5,OUTPUT);
+pinMode(9,OUTPUT);
+Serial.begin(9600); //set the serial communication rate
+}
+void loop()
+{
+while(Serial.available() == 0); //check whether arduino is reciving signal or not
+char val = Serial.read() ;//reads the signal
+Serial.print(val);
+/****TO SWITCH led OFF****/
+if (val == 'F')
+{
+Serial. println("--LED TURNED OFF");
+digitalWrite(5,HIGH);
+}
+/***TO SWITCH led ON ****/
+else if(val == 'B')
+{
+Serial. println("--LED TURNED ON");
+digitalWrite(5,LOW);
+}
+/****TO SWITCH MOTOR OFF****/
+else if(val == 'G')
+{
+Serial. println("--MOTOR TURNED OFF");
+digitalWrite(9,HIGH);
+}
+/****TO SWITCH MOTOR ON****/
+else if(val == 'J')
+{
+Serial. println("--MOTOR TURNED ON");
+digitalWrite(9,LOW);
+}
+}
